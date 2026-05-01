@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
@@ -25,29 +24,21 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .pathMatchers(
-                                "/api/auth/**",
-                                "/api/auth/register-vet",
-                                "/api/v1/authentication/**",
-                                "/api/v1/auth/google/**",
-                                "/iam-service/api/v1/auth/google/**",
-                                "/iam-service/api/v1/authentication/**",
-                                "/pet-service/**",
-                                "/pet-owner-service/**",
-                                "/appointment-service/**",
-                                "/review-service/**",
-                                "/medical-record-service/**",
-                                "/schedule-service/**",
-                                "/veterinary-service/**",
-                                "/diagnostic-service/**",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/swagger-ui/**",
                                 "/v3/api-docs/swagger-config",
                                 "/webjars/**",
-                                "/iam-service/v3/api-docs/**",
-                                "8010/webjars/**",
-                                "/8010/webjars/**"
+                                "/*/v3/api-docs/**",
+                                "/appointment-service/**",
+                                "/pet-service/**",
+                                "/pet-owner-service/**",
+                                "/medical-record-service/**",
+                                "/schedule-service/**",
+                                "/review-service/**",
+                                "/diagnostic-service/**",
+                                "/veterinary-service/**",
+                                "/iam-service/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 );
