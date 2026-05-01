@@ -3,7 +3,12 @@ package pe.upc.pawfectcaremicroservices.iam_service.interfaces.rest.resources;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+/**
+ * Sign-up request resource for regular users.
+ * Replaces the duplicate SignUpResource record, which served the same purpose.
+ */
+@Getter
+@Setter
 public class SignUpRequest {
     private String userName;
     private String password;

@@ -1,5 +1,6 @@
 package pe.upc.pawfectcaremicroservices.iam_service.infrastructure.authorization.sfs.configuration;
 
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import pe.upc.pawfectcaremicroservices.iam_service.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
 import pe.upc.pawfectcaremicroservices.iam_service.infrastructure.hashing.bcrypt.BCryptHashingService;
 import pe.upc.pawfectcaremicroservices.iam_service.infrastructure.tokens.jwt.BearerTokenService;
@@ -17,9 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-
-import java.util.List;
 
 /**
  * Web Security Configuration.
@@ -45,10 +43,10 @@ public class WebSecurityConfiguration {
      * This method creates the Bearer Authorization Request Filter.
      * @return The Bearer Authorization Request Filter
      */
-    /*@Bean
+    @Bean
     public BearerAuthorizationRequestFilter authorizationRequestFilter() {
         return new BearerAuthorizationRequestFilter(tokenService, userDetailsService);
-    }*/
+    }
 
     /**
      * This method creates the authentication manager.
@@ -91,7 +89,7 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrfConfigurer -> csrfConfigurer.disable())
+        http.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(unauthorizedRequestHandler))
                 .sessionManagement( customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
@@ -117,9 +115,8 @@ public class WebSecurityConfiguration {
                         .anyRequest().authenticated()
                 );
         http.authenticationProvider(authenticationProvider());
-        //http.addFilterBefore(authorizationRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authorizationRequestFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
-
     }
 
 

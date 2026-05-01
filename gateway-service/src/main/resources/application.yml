@@ -6,8 +6,7 @@ spring:
       routes:
         # Pet Owner Service
         - id: pet-owner-service
-          # uri: http://localhost:8094 # estuve probando con esta uri [con esa funcionó primero]
-          uri: lb://pet-owner-service # Con esto ya funciona también
+          uri: lb://pet-owner-service
           predicates:
             - Path=/pet-owner-service/**
           filters:
@@ -82,7 +81,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URL:http://registry-service:8090/eureka/}
+      defaultZone: ${EUREKA_URL:http://localhost:8090/eureka/}
       logging:
         level:
           org.springframework.security: DEBUG
