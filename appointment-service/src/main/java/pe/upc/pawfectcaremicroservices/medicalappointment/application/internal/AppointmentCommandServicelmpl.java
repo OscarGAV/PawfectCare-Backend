@@ -60,7 +60,7 @@ public class AppointmentCommandServicelmpl implements AppointmentCommandService 
         if (!externalPet.existsPetById(command.petId()))
             throw new IllegalArgumentException("Pet does not exist");
 
-        if (!externalVeterinarian.existsVeterinarianById(command.veterinarianId()))
+        if (externalVeterinarian.existsVeterinarianById(command.veterinarianId()))
             throw new IllegalArgumentException("Veterinarian does not exist");
 
         var availabilityOpt = externalVeterinarian.getVeterinarianAvailabilityById(command.veterinarianId());
@@ -118,7 +118,7 @@ public class AppointmentCommandServicelmpl implements AppointmentCommandService 
 
         // Verifies if the pet associated with the appointment exists
         Long vetId = appointmentToUpdate.getVeterinarianId();
-        if (!externalVeterinarian.existsVeterinarianById(vetId)) {
+        if (externalVeterinarian.existsVeterinarianById(vetId)) {
             throw new IllegalArgumentException("Associated veterinarian no longer exists");
         }
 

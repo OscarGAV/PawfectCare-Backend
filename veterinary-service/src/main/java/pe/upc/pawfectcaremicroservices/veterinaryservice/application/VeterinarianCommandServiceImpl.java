@@ -1,8 +1,6 @@
 package pe.upc.pawfectcaremicroservices.veterinaryservice.application;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import pe.upc.pawfectcaremicroservices.veterinaryservice.domain.model.aggregates.Veterinarian;
 import pe.upc.pawfectcaremicroservices.veterinaryservice.domain.model.commands.CreateVeterinarianCommand;
 import pe.upc.pawfectcaremicroservices.veterinaryservice.domain.model.commands.UpdateVeterinarianAvailabilityCommand;
@@ -11,8 +9,6 @@ import pe.upc.pawfectcaremicroservices.veterinaryservice.domain.model.valueobjec
 import pe.upc.pawfectcaremicroservices.veterinaryservice.domain.services.VeterinarianCommandService;
 import pe.upc.pawfectcaremicroservices.veterinaryservice.infrastructure.persistence.jpa.repositories.VeterinarianRepository;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 
 @Service
@@ -25,9 +21,6 @@ public class VeterinarianCommandServiceImpl implements VeterinarianCommandServic
 
     @Override
     public Long handle(CreateVeterinarianCommand command) {
-        if (veterinarianRepository.existsByDni(command.dni())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Veterinarian with same dni already exists");
-        }
         var veterinarian = new Veterinarian(command);
         try {
             veterinarianRepository.save(veterinarian);
@@ -45,10 +38,6 @@ public class VeterinarianCommandServiceImpl implements VeterinarianCommandServic
         try {
             var updatedVeterinarian = veterinarianRepository.save(veterinarianToUpdate
                     .updateInformation(
-                            command.fullName(),
-                            command.phoneNumber(),
-                            command.email(),
-                            command.dni(),
                             command.veterinarianSpeciality() != null ?
                                     VeterinarianSpeciality.fromValue(command.veterinarianSpeciality()) :
                                     veterinarianToUpdate.getVeterinarianSpeciality()

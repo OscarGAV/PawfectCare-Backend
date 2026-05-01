@@ -2,7 +2,6 @@ package pe.upc.pawfectcaremicroservices.iam_service.infrastructure.persistence.j
 
 import org.springframework.stereotype.Repository;
 import pe.upc.pawfectcaremicroservices.iam_service.domain.model.aggregates.User;
-import pe.upc.pawfectcaremicroservices.iam_service.domain.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -15,18 +14,23 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByUserName(String userName) {
-        return jpaRepo.findByUserName(userName);
+    public Optional<User> findByUsername(String username) {
+        return jpaRepo.findByUsername(username);
     }
 
     @Override
-    public User save(User user) {
-        return jpaRepo.save(user);
+    public void save(User user) {
+        jpaRepo.save(user);
     }
 
     @Override
-    public boolean existsByUserName(String userName) {
-        return jpaRepo.existsByUserName(userName);
+    public boolean existsByEmail(String email) {
+        return jpaRepo.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByDni(String dni) {
+        return jpaRepo.existsByDni(dni);
     }
 
     @Override

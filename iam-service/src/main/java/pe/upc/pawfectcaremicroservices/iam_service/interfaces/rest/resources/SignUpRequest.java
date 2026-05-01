@@ -5,16 +5,14 @@ import lombok.Setter;
 
 /**
  * Sign-up request resource for regular users.
- * Replaces the duplicate SignUpResource record, which served the same purpose.
  */
 @Getter
 @Setter
 public class SignUpRequest {
-    private String userName;
+    private String username;
     private String password;
     private String role;
     private String fullName;
-    private String phoneNumber;
     private String email;
-    private String address;
+    private String dni;
 }

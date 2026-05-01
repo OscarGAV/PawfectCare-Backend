@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.upc.pawfectcaremicroservices.iam_service.domain.model.queries.GetAllRolesQuery;
+import pe.upc.pawfectcaremicroservices.iam_service.domain.model.queries.RolesQueries;
 import pe.upc.pawfectcaremicroservices.iam_service.domain.services.RoleQueryService;
 import pe.upc.pawfectcaremicroservices.iam_service.interfaces.rest.resources.RoleResource;
 import pe.upc.pawfectcaremicroservices.iam_service.interfaces.rest.transform.RoleResourceFromEntityAssembler;
@@ -35,7 +35,7 @@ public class RolesController {
      */
     @GetMapping
     public ResponseEntity<List<RoleResource>> getAllRoles() {
-        var getAllRolesQuery = new GetAllRolesQuery();
+        var getAllRolesQuery = new RolesQueries.GetAllRolesQuery();
         var roles = roleQueryService.handle(getAllRolesQuery);
         var roleResources = roles.stream().map(RoleResourceFromEntityAssembler::toResourceFromEntity).toList();
         return ResponseEntity.ok(roleResources);

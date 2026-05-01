@@ -2,10 +2,7 @@ package pe.upc.pawfectcaremicroservices.iam_service.domain.model.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 import pe.upc.pawfectcaremicroservices.iam_service.domain.model.valueobjects.Roles;
 
 import java.util.List;
@@ -19,9 +16,9 @@ import java.util.List;
  */
 @Entity
 @Data
+@With
 @NoArgsConstructor
 @AllArgsConstructor
-@With
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +45,7 @@ public class Role {
      * @return the default role
      */
     public static Role getDefaultRole() {
-        return new Role(Roles.ROLE_USER);
+        return new Role(Roles.ROLE_CLIENT);
     }
 
     /**

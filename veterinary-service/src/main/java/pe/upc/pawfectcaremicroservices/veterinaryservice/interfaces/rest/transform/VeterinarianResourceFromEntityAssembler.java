@@ -8,10 +8,6 @@ public class VeterinarianResourceFromEntityAssembler {
         return new VeterinarianResource(
                 entity.getId(),
                 entity.getUserId(),
-                entity.getFullName(),
-                entity.getPhoneNumber(),
-                entity.getEmail(),
-                entity.getDni(),
                 entity.getVeterinarianSpeciality(),
                 entity.getAvailableStartTime(),
                 entity.getAvailableEndTime());

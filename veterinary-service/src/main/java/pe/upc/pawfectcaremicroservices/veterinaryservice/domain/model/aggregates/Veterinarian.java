@@ -17,11 +17,10 @@ public class Veterinarian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private Long userId;
-    private String fullName;
-    private String phoneNumber;
-    private String email;
-    private String dni;
+
     @Enumerated(EnumType.STRING)
     private VeterinarianSpeciality veterinarianSpeciality;
 
@@ -29,16 +28,14 @@ public class Veterinarian {
     //private String availableDays;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @Column()
     private LocalDateTime availableStartTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @Column()
     private LocalDateTime availableEndTime;
 
     public Veterinarian() {
-        this.fullName = "";
-        this.phoneNumber = "";
-        this.dni = "";
-        this.email = "";
         this.veterinarianSpeciality = VeterinarianSpeciality.GENERAL_MEDICINE;
         this.availableStartTime = LocalDateTime.now();
         this.availableEndTime = LocalDateTime.now().plusHours(8);
@@ -46,20 +43,12 @@ public class Veterinarian {
 
     public Veterinarian(CreateVeterinarianCommand createVeterinarianCommand) {
         this.userId = createVeterinarianCommand.userId();
-        this.fullName = createVeterinarianCommand.fullName();
-        this.phoneNumber = createVeterinarianCommand.phoneNumber();
-        this.email = createVeterinarianCommand.email();
-        this.dni = createVeterinarianCommand.dni();
         this.veterinarianSpeciality = VeterinarianSpeciality.fromValue(createVeterinarianCommand.veterinarianSpeciality());
         this.availableStartTime = createVeterinarianCommand.availableStartTime();
         this.availableEndTime = createVeterinarianCommand.availableEndTime();
     }
 
-    public Veterinarian updateInformation(String fullName, String phoneNumber, String email, String dni, VeterinarianSpeciality veterinarianSpeciality) {
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.dni = dni;
+    public Veterinarian updateInformation(VeterinarianSpeciality veterinarianSpeciality) {
         this.veterinarianSpeciality = veterinarianSpeciality;
         return this;
     }

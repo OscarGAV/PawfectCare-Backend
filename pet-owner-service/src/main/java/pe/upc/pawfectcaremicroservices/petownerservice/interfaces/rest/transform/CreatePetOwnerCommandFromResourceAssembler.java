@@ -7,10 +7,7 @@ public class CreatePetOwnerCommandFromResourceAssembler {
     public static CreatePetOwnerCommand toCommandFromResource(CreatePetOwnerResource resource) {
         return new CreatePetOwnerCommand(
                 resource.userId(),
-                resource.fullName(),
-                resource.phoneNumber(),
-                resource.email(),
-                resource.address());
+                resource.phoneNumber());
     }
 }
 

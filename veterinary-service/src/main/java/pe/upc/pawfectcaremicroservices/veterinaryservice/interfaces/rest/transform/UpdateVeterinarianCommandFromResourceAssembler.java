@@ -7,10 +7,6 @@ public class UpdateVeterinarianCommandFromResourceAssembler {
     public static UpdateVeterinarianCommand toCommandFromResource(Long veterinarianId, UpdateVeterinarianResource resource) {
         return new UpdateVeterinarianCommand(
                 veterinarianId,
-                resource.fullName(),
-                resource.phoneNumber(),
-                resource.email(),
-                resource.dni(),
                 resource.speciality());
     }
 }

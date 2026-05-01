@@ -1,8 +1,7 @@
 package pe.upc.pawfectcaremicroservices.iam_service.application.internal.queryservices;
 
 import pe.upc.pawfectcaremicroservices.iam_service.domain.model.entities.Role;
-import pe.upc.pawfectcaremicroservices.iam_service.domain.model.queries.GetAllRolesQuery;
-import pe.upc.pawfectcaremicroservices.iam_service.domain.model.queries.GetRoleByNameQuery;
+import pe.upc.pawfectcaremicroservices.iam_service.domain.model.queries.RolesQueries;
 import pe.upc.pawfectcaremicroservices.iam_service.domain.services.RoleQueryService;
 import pe.upc.pawfectcaremicroservices.iam_service.infrastructure.persistence.jpa.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class RoleQueryServiceImpl implements RoleQueryService {
      * @return List<Role> the list of role
      */
     @Override
-    public List<Role> handle(GetAllRolesQuery query) {
+    public List<Role> handle(RolesQueries.GetAllRolesQuery query) {
         return roleRepository.findAll();
     }
 
@@ -42,7 +41,7 @@ public class RoleQueryServiceImpl implements RoleQueryService {
      * @return Optional<Role> the role
      */
     @Override
-    public Optional<Role> handle(GetRoleByNameQuery query) {
+    public Optional<Role> handle(RolesQueries.GetRoleByNameQuery query) {
         return roleRepository.findByName(query.name());
     }
 }

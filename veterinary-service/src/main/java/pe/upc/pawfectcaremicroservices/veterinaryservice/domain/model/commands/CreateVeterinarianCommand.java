@@ -6,10 +6,6 @@ import java.time.LocalDateTime;
 
 public record CreateVeterinarianCommand(
         Long userId,
-        String fullName,
-        String phoneNumber,
-        String email,
-        String dni,
         String veterinarianSpeciality,
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")

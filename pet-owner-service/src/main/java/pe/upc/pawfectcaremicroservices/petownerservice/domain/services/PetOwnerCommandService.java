@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface PetOwnerCommandService {
     Optional<PetOwner> handle(UpdatePetOwnerCommand command);
     Long handle(CreatePetOwnerCommand command);
-
 }

@@ -7,9 +7,6 @@ public class UpdatePetOwnerCommandFromResourceAssembler {
     public static UpdatePetOwnerCommand toCommandFromResource(Long ownerId, UpdatePetOwnerResource resource) {
         return new UpdatePetOwnerCommand(
                 ownerId,
-                resource.fullName(),
-                resource.phoneNumber(),
-                resource.email(),
-                resource.address());
+                resource.phoneNumber());
     }
 }

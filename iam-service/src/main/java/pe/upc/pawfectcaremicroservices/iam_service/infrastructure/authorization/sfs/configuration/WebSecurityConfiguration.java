@@ -95,14 +95,8 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers(
                                 "/api/v1/authentication/sign-in",
-                                "/api/v1/authentication/sign-in-admin",
                                 "/api/v1/authentication/sign-up",
-                                "/api/v1/authentication/sign-up-admin",
-                                "/api/v1/auth/google/sign-in-user",
-                                "/api/v1/auth/google/sign-in-user-admin",
-                                "/iam-service/api/v1/auth/google/**",
                                 "/iam-service/api/v1/authentication/**",
-                                "/api/v1/auth/google/sign-in",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",

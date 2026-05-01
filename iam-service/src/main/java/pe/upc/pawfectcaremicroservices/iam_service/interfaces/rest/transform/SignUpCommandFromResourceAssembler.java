@@ -5,9 +5,13 @@ import pe.upc.pawfectcaremicroservices.iam_service.interfaces.rest.resources.Sig
 
 public class SignUpCommandFromResourceAssembler {
     public static SignUpCommand toCommandFromResource(SignUpRequest request) {
-        //var role = request.role() != null ? request.role().stream().map(name -> Role.toRoleFromName(name)).toList() : new ArrayList<Role>();
-        //var role = request.getRole();
-        return new SignUpCommand(request.getUserName(), request.getPassword(), request.getRole(),
-                request.getFullName(), request.getPhoneNumber(), request.getEmail(), request.getAddress());
+        return new SignUpCommand(
+                request.getUsername(),
+                request.getPassword(),
+                request.getRole(),
+                request.getFullName(),
+                request.getEmail(),
+                request.getDni()
+        );
     }
 }

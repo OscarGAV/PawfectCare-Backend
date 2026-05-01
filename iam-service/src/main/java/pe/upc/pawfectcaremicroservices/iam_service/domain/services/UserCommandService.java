@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface UserCommandService {
     Optional<ImmutablePair<User, String>> handle(SignInCommand command);
     Optional<User> handle(SignUpCommand command);
-    Optional<ImmutablePair<User, String>> handle(GoogleSignInCommand command);
-    Optional<ImmutablePair<User, String>> handle(GoogleCallbackCommand command);
     boolean isEmailUnique(String email);
     boolean isPasswordValid(String password);
 }

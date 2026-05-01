@@ -9,9 +9,7 @@ public class PetOwnerResourceFromEntityAssembler {
         return new PetOwnerResource(
                 entity.getId(),
                 entity.getUserId(),
-                entity.getFullName(),
-                entity.getPhoneNumber(),
-                entity.getEmail(),
-                entity.getAddress());
+                entity.getPhoneNumber()
+        );
     }
 }

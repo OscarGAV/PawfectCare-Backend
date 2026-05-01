@@ -18,9 +18,9 @@ public class ExternalVeterinarian {
     public boolean existsVeterinarianById(Long veterinarianId) {
         try {
             restTemplate.getForObject("http://localhost:8010/veterinary-service/api/v1/veterinarians/{veterinarianId}", Object.class, veterinarianId);
-            return true;
-        } catch (HttpClientErrorException.NotFound e) {
             return false;
+        } catch (HttpClientErrorException.NotFound e) {
+            return true;
         }
     }
 

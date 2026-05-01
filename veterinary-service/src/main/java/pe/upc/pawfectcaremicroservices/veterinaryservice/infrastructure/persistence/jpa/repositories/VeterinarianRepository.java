@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface VeterinarianRepository extends JpaRepository<Veterinarian, Long> {
     boolean existsById(Long id);
-    boolean existsByDni(String dni);
     List<Veterinarian> findAllByVeterinarianSpeciality(VeterinarianSpeciality veterinarianSpeciality);
 }
